@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Delight</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #ff4500;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        header img {
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        header .button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        header button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        header button img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        header button:hover {
+            background-color: #039a5e;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffa07a;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            margin: 20px auto;
+            max-width: 500px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            width: 80%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .carousel-btn:hover {
+            background-color: #e63900;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #343a40;
+            color: white;
+            margin-top: 20px;
+        }
+
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f); 
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pizza Delight!</h1>
+        <img src="https://seeklogo.com/images/P/pizza-hut-logo-DBFE2E48AF-seeklogo.com.png" alt="Pizza Hut Logo">
+        <div class="button-container">
+            <button type="button" id="sign-in">Sign in</button>
+            <button type="button" id="order-now">
+                <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Cart" style="width: 20px; height: 20px;">
+                Order Now
+            </button>
+        </div>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+    <main>
+        <div class="carousel">
+            <img id="carousel-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHr4FiIslJFTrLxaoRgE1djF3rTfgBDS-kOw&s" alt="Cheesy pepperoni pizza">
+            <button id="prev" class="carousel-btn" aria-label="Previous Image">Previous</button>
+            <button id="next" class="carousel-btn" aria-label="Next Image">Next</button>
+        </div>
+        <p>Fresh, delicious pizza available now! Order your favorite today.</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Pizza Delight. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const images = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHr4FiIslJFTrLxaoRgE1djF3rTfgBDS-kOw&s",
+            "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-193739_12-b9155c5.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpMoMA0qhyXP1yN6BU6yp_Q5dHmdBo9K3Iw&s",
+            "https://napolipizzahanover.com/wp-content/uploads/2023/05/mahyar-motebassem-pGA4zHvpo5E-unsplash.jpg",
+            "https://i.pinimg.com/1200x/07/37/1a/07371a5299ecdc51bbb2dfff5b59ba47.jpg"
+        ];
+
+        const imageAlts = [
+            "Cheesy pepperoni pizza",
+            "Homemade pizza with fresh toppings",
+            "Vegetarian pizza with olives and peppers",
+            "Gourmet pizza with a crispy crust",
+            "Classic margherita pizza"
+        ];
+
+        let currentImageIndex = 0;
+
+        const carouselImage = document.getElementById("carousel-image");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+
+        function updateImage(index) {
+            carouselImage.src = images[index];
+            carouselImage.alt = imageAlts[index];
+        }
+
+        nextButton.addEventListener("click", () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateImage(currentImageIndex);
+        });
+
+        prevButton.addEventListener("click", () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateImage(currentImageIndex);
+        });
+
+        setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateImage(currentImageIndex);
+        }, 3000);
+
+        const orderNowButton = document.getElementById("order-now");
+        orderNowButton.addEventListener("click", () => {
+            alert("Redirecting to the order page...");
+        });
+    </script>
+</body>
+</html>
